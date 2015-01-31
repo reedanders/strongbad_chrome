@@ -211,10 +211,11 @@ function updateUnreadCount(count) {
   var newEmail = localStorage.unreadCount < count;
   localStorage.unreadCount = count;
   updateIcon();
-  if (changed)
-    animateFlip();
+  //if (changed)
+  //  animateFlip();
   if (newEmail)
     soundAlert();
+    animateShake();
 }
 
 
@@ -226,6 +227,19 @@ function animateFlip() {
   //console.log("Trying animatedFlip");
   rotation += 1/animationFrames;
   drawIconAtRotation();
+
+  if (rotation <= 1) {
+    setTimeout(animateFlip, animationSpeed);
+  } else {
+    rotation = 0;
+    updateIcon();
+  }
+}
+
+function animateShake() {
+  console.log("Trying animatedShake");
+  rotation += 1/animationFrames;
+  drawIconAtShake();
 
   if (rotation <= 1) {
     setTimeout(animateFlip, animationSpeed);
@@ -255,6 +269,40 @@ function drawIconAtRotation() {
 
   chrome.browserAction.setIcon({imageData:canvasContext.getImageData(0, 0,
       canvas.width,canvas.height)});
+}
+
+
+function preShake() {
+  canvasContext.save();
+  var dx = Math.random()*10;
+  var dy = Math.random()*10;
+  canvasContext.translate(dx, dy);
+}
+
+function postShake() {
+  canvasContext.restore();
+}
+
+function drawThings() {
+  canvasContext.fillStyle = '#F00';
+  canvasContext.fillRect(10, 10, 50, 30);
+  canvasContext.fillStyle = '#0F0';
+  canvasContext.fillRect(140, 30, 90, 110);
+  canvasContext.fillStyle = '#00F';
+  canvasContext.fillRect(80, 70, 60, 40);
+}
+
+function drawIconAtShake() {
+  // keep animation alive
+  requestAnimationFrame(drawIconAtShake);
+  // erase
+  canvasContext.clearRect(0,0,canvas.width, canvas.height);
+  //
+  preShake();
+  //
+  drawThings();
+  //
+  postShake();
 }
 
 function goToInbox() {
