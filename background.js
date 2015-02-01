@@ -85,14 +85,14 @@ LoadingAnimation.prototype.stop = function() {
 function updateIcon() {
   if (!localStorage.hasOwnProperty('unreadCount')) {
     chrome.browserAction.setIcon({path:"gmail_not_logged_in.png"});
-    chrome.browserAction.setBadgeBackgroundColor({color:[190, 190, 190, 230]});
-    chrome.browserAction.setBadgeText({text:"?"});
+    //chrome.browserAction.setBadgeBackgroundColor({color:[190, 190, 190, 230]});
+    //chrome.browserAction.setBadgeText({text:"?"});
   } else {
     chrome.browserAction.setIcon({path: "Strong_bad_head.png"});
-    chrome.browserAction.setBadgeBackgroundColor({color:[208, 0, 24, 255]});
-    chrome.browserAction.setBadgeText({
-      text: localStorage.unreadCount != "0" ? localStorage.unreadCount : ""
-    });
+    //chrome.browserAction.setBadgeBackgroundColor({color:[208, 0, 24, 255]});
+    //chrome.browserAction.setBadgeText({
+    //  text: localStorage.unreadCount != "0" ? localStorage.unreadCount : ""
+    //});
   }
 }
 
@@ -215,7 +215,7 @@ function updateUnreadCount(count) {
   //  animateFlip();
   if (newEmail)
     soundAlert();
-    animateShake();
+    animateFlip();
 }
 
 
