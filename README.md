@@ -1,4 +1,4 @@
-## Strongbad Chrome Extension
+## Strong Bad Chrome Extension
 
 A simple chrome extension based on the Gmail chrome extension. After installation, it plays a Strong Bad email sound clip whenever a new email in your Gmail inbox is detected. 
 
