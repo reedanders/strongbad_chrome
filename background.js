@@ -58,7 +58,7 @@ LoadingAnimation.prototype.paintFrame = function() {
   if (this.current_ >= this.maxDot_)
     text += "";
 
-  chrome.browserAction.setBadgeText({text:text});
+  //chrome.browserAction.setBadgeText({text:text});
   this.current_++;
   if (this.current_ == this.maxCount_)
     this.current_ = 0;
@@ -89,7 +89,7 @@ function updateIcon() {
     //chrome.browserAction.setBadgeText({text:"?"});
   } else {
     chrome.browserAction.setIcon({path: "Strong_bad_head.png"});
-    //chrome.browserAction.setBadgeBackgroundColor({color:[208, 0, 24, 255]});
+    //chrome.browserAction.setBadgeBackgroundColor({color:[0, 0, 24, 255]});
     //chrome.browserAction.setBadgeText({
     //  text: localStorage.unreadCount != "0" ? localStorage.unreadCount : ""
     //});
@@ -251,7 +251,7 @@ function animateShake() {
 
 function soundAlert() {
   console.log("Trying soundAlert");
-  var snd = new Audio("hmm-pop.wav"); // buffers automatically when created
+  var snd = new Audio("email_sb.wav"); // buffers automatically when created
   snd.play();
 }
 
